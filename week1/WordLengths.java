@@ -27,13 +27,15 @@ public class WordLengths {
             if (Character.isLetter(word.charAt(word.length()-1)) == false) {
                 length--;
             }
-            if (length > 30) {
+            if (length >= 30) {
                 length = 30;
             }
-            if (length > counts.length) {
-                length = counts.length -1;
+            if (length >= counts.length) {
+                length = counts.length - 1;
             }
-            counts[length] += 1;
+            if (length > 0) {
+                counts[length] += 1;
+            }
         }
     }
     
@@ -52,7 +54,7 @@ public class WordLengths {
     public void testCountWordLengths() {
         FileResource resource = new FileResource();
         
-        int[] counts = new int[31];
+        int[] counts = new int[31]; // to store numbers [0,1,...,30]
         
         countWordLengths(resource, counts);
         
