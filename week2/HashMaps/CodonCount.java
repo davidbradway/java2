@@ -17,14 +17,11 @@ public class CodonCount {
         map.clear();
         for(int i = start; i<dna.length()-2; i+=3){
             String codon = dna.substring(i,i+3);
-            codon = codon.toUpperCase();
-            if(Character.isLetter(codon.charAt(codon.length()-1))) {
-                if (!map.containsKey(codon)){
-                    map.put(codon,1);
-                }
-                else {
-                    map.put(codon,map.get(codon)+1);
-                }
+            if (!map.containsKey(codon)){
+                map.put(codon,1);
+            }
+            else {
+                map.put(codon,map.get(codon)+1);
             }
         }
     }
@@ -50,7 +47,7 @@ public class CodonCount {
         for(String codon : map.keySet()) {
             int count = map.get(codon);
             if ((count >= start) && (count <= end)) {
-                System.out.println(codon.toUpperCase()+" "+count);
+                System.out.println(codon+" "+count);
             }
         }
     }
@@ -62,8 +59,21 @@ public class CodonCount {
             buildCodonMap(i, dna);
             System.out.println("Reading frame starting with "+i+" results in "+map.size()+" unique codons");
             System.out.println("and most common codon is "+getMostCommonCodon());
-            System.out.println("Counts of codons between 1 and 5 inclusive are:");
-            printCodonCounts(1, 5);     
+            
+            int num1 = 6;
+            int num2 = 6;
+            System.out.println("Counts of codons between "+num1+" and "+num2+" inclusive are:");
+            printCodonCounts(num1, num2);
+            
+            num1 = 7;
+            num2 = 7;
+            System.out.println("Counts of codons between "+num1+" and "+num2+" inclusive are:");
+            printCodonCounts(num1, num2);
+            
+            num1 = 4;
+            num2 = 4;
+            System.out.println("Counts of codons between "+num1+" and "+num2+" inclusive are:");
+            printCodonCounts(num1, num2);
         }
     }
     /*f occurrences in this reading frame are between two numbers inclusive.*/

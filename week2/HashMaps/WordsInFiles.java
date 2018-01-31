@@ -15,10 +15,11 @@ public class WordsInFiles {
     }
     
     private void addWordsFromFile(File f) {
+        //System.out.println(f.getName());
         FileResource fr = new FileResource(f.getName());
         
         for(String word : fr.words()){
-            word = word.toLowerCase();
+            //word = word.toLowerCase();
                
             if (map.containsKey(word)){
                 ArrayList<String> filenames = new ArrayList<String>(); 
@@ -49,7 +50,7 @@ public class WordsInFiles {
         }
     }
     
-    public int maxNumber(){
+    private int maxNumber(){
         int maximumNum = 0;
         for(String word : map.keySet()) {
             ArrayList<String> filenames = new ArrayList<String>();
@@ -61,7 +62,7 @@ public class WordsInFiles {
         return maximumNum;
     }
     
-    public ArrayList wordsInNumFiles(int number) {
+    private ArrayList wordsInNumFiles(int number) {
         ArrayList<String> words = new ArrayList<String>();
         words.clear();
         for(String word : map.keySet()) {
@@ -74,10 +75,11 @@ public class WordsInFiles {
         return words;
     }
 
-    public void printFilesIn(String word) {
+    private void printFilesIn(String word) {
         if(map.containsKey(word)) {
             ArrayList<String> filenames = new ArrayList<String>();
             filenames = map.get(word);
+            System.out.print(word+" appears in the files: ");
             for (String filename : filenames) {
                 System.out.println(filename);
             }
@@ -93,14 +95,44 @@ public class WordsInFiles {
                 System.out.print(word+": ");
                 printFilesIn(word);
             }*/
-        }        
+        }
+        
         System.out.println("max number: "+maxNumber());
         System.out.println("files containing most popular word:");
         ArrayList<String> words = new ArrayList<String>();
         words = wordsInNumFiles(maxNumber());
-        for(String word : words) {
-            System.out.println(word);
+        /*for(String word : words) {
+            System.out.print(word);
+            System.out.print(" ");
             printFilesIn(word);
-        }
-    }
+            System.out.println("");
+        }*/
+        System.out.println("#: " +words.size());
+        
+        System.out.println("in four files:" );
+        words = wordsInNumFiles(4);
+        /*for(String word : words) {
+            System.out.print(word);
+            System.out.print(" ");
+            printFilesIn(word);
+        }*/
+        System.out.println("");
+        System.out.println("#: " +words.size());
+        
+        String word = "sad";
+        System.out.println("Files containing "+word);
+        printFilesIn(word);
+        
+        word = "red";
+        System.out.println("Files containing "+word);
+        printFilesIn(word);
+
+        word = "laid";
+        System.out.println("Files containing "+word);
+        printFilesIn(word);
+
+        word = "tree";
+        System.out.println("Files containing "+word);
+        printFilesIn(word);
+}
 }
